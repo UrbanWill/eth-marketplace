@@ -1,12 +1,15 @@
 import type { NextPage } from "next";
-
-import Test from "components/Test";
+import { Footer, Navbar } from "components/common";
 
 const Home: NextPage = () => (
-  <>
-    <p className="text-red-500">Hello Eth Marketplace!</p>
-    <Test />
-  </>
+  <div>
+    <div className="relative bg-white overflow-hidden">
+      <div className="relative max-w-7xl mx-auto px-4">
+        <Navbar />
+      </div>
+      <Footer />
+    </div>
+  </div>
 );
 
 export default Home;
