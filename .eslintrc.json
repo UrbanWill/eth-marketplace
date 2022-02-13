@@ -5,8 +5,17 @@
       "@typescript-eslint/parser": [".ts", ".tsx"]
     },
     "import/resolver": {
+      "typescript": {
+        "project": "."
+      },
       "node": {
-        "extensions": [".js", ".jsx", ".ts", ".tsx"]
+        "extensions": [".js", ".jsx", ".ts", ".tsx"],
+        "alias": {
+          "map": [
+            ["components", "./components"],
+            ["lib", "./lib"]
+          ]
+        }
       }
     }
   },
