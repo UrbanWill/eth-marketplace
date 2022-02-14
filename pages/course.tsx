@@ -1,15 +1,16 @@
 import type { NextPage } from "next";
+import BaseLayout from "components/layout";
 
 import { CourseHero, Keypoints, Curriculum } from "components/course";
 import { Modal } from "components/common";
 
 const Course: NextPage = () => (
-  <div className="relative max-w-7xl mx-auto px-4">
+  <BaseLayout>
     <CourseHero />
     <Keypoints />
     <Curriculum />
     <Modal />
-  </div>
+  </BaseLayout>
 );
 
 export default Course;
