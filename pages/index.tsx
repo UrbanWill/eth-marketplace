@@ -11,8 +11,7 @@ interface Props {
 const Home: NextPage<Props> = ({ courses }: Props) => (
   <>
     <Hero />
-    {JSON.stringify(courses)}
-    <CourseList />
+    <CourseList courses={courses} />
   </>
 );
 export const getStaticProps: GetStaticProps = () => {
