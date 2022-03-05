@@ -1,6 +1,7 @@
 import { FC } from "react";
 import { Course } from "utils/types";
 import Image from "next/image";
+import Link from "next/link";
 
 interface Props {
   courses: Course | any;
@@ -9,7 +10,7 @@ interface Props {
 const CourseList: FC<Props> = ({ courses }) => (
   <section className="grid md:grid-cols-1 lg:grid-cols-2 gap-4 mb-5">
     {courses.map((course: Course) => {
-      const { id, coverImage, title, type, description } = course;
+      const { id, coverImage, title, type, description, slug } = course;
       return (
         <div
           key={id}
@@ -30,12 +31,11 @@ const CourseList: FC<Props> = ({ courses }) => (
               <div className="uppercase tracking-wide text-sm text-indigo-500 font-semibold">
                 {type}
               </div>
-              <a
-                href="placeHolder"
-                className="block mt-1 text-lg leading-tight font-medium text-black hover:underline"
-              >
-                {title}
-              </a>
+              <Link href={`/courses/${slug}`}>
+                <a className="block mt-1 text-lg leading-tight font-medium text-black hover:underline">
+                  {title}
+                </a>
+              </Link>
               <p className="mt-2 text-gray-500">{description}</p>
             </div>
           </div>

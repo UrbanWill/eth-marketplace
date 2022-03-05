@@ -1,3 +1,5 @@
+import { ParsedUrlQuery } from "querystring";
+
 interface Course {
   id: string;
   type: string;
@@ -12,5 +14,8 @@ interface Course {
   index: number;
 }
 
-// eslint-disable-next-line import/prefer-default-export
-export type { Course };
+interface IParams extends ParsedUrlQuery {
+  slug: string;
+}
+
+export type { Course, IParams };

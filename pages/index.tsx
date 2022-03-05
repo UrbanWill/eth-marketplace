@@ -5,7 +5,7 @@ import getAllCourses from "content/courses/fetcher";
 import { Course } from "utils/types";
 
 interface Props {
-  courses: Course;
+  courses: Course[];
 }
 
 const Home: NextPage<Props> = ({ courses }: Props) => (
