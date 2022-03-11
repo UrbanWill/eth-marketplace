@@ -11,10 +11,9 @@ interface Props {
 
 const Course: NextPage<Props> = ({ course }: Props) => (
   <>
-    <p>{course.title}</p>
-    <CourseHero />
-    <Keypoints />
-    <Curriculum />
+    <CourseHero course={course} />
+    <Keypoints points={course.wsl} />
+    <Curriculum locked />
     <Modal />
   </>
 );

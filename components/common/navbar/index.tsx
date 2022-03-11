@@ -31,10 +31,10 @@ const Navbar: FC = () => (
               </a>
             </Link>
             <a
-              href="login"
-              className="font-medium mr-8 text-indigo-600 hover:text-indigo-500"
+              href="#Connect"
+              className="px-8 py-3 border rounded-md text-base font-medium text-white bg-indigo-600 hover:bg-indigo-700"
             >
-              Log in
+              Connect
             </a>
           </div>
         </div>
