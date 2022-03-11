@@ -18,4 +18,8 @@ interface IParams extends ParsedUrlQuery {
   slug: string;
 }
 
-export type { Course, IParams };
+interface IWeb3Context {
+  test: string;
+}
+
+export type { Course, IParams, IWeb3Context };
