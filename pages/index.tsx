@@ -1,6 +1,6 @@
 import type { NextPage, GetStaticProps } from "next";
-import { Hero } from "components/common";
-import { CourseList } from "components/course";
+import { Hero } from "components/ui/common";
+import { CourseList } from "components/ui/course";
 import getAllCourses from "content/courses/fetcher";
 import { Course } from "utils/types";
 

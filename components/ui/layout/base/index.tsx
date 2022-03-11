@@ -1,5 +1,5 @@
 import { FC } from "react";
-import { Footer, Navbar } from "components/common";
+import { Footer, Navbar } from "components/ui/common";
 
 const BaseLayout: FC = ({ children }) => (
   <>
