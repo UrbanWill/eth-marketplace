@@ -3,11 +3,13 @@ import { useWeb3 } from "components/providers";
 import { IWeb3Context } from "utils/types";
 import { FC } from "react";
 import useAccount from "components/hooks/web3/useAccount";
+import { useRouter } from "next/router";
 import Button from "../button";
 
 const Navbar: FC = () => {
   const { connect, isWeb3Loaded, isLoading } = useWeb3() as IWeb3Context;
   const { account } = useAccount();
+  const { pathname } = useRouter();
 
   const getWeb3Button = () => {
     if (account.data) {
@@ -16,7 +18,6 @@ const Navbar: FC = () => {
           text={`Hi there ${account.isAdmin ? "Admin" : ""}`}
           isHoverable={false}
           className="cursor-default"
-          variant="red"
         />
       );
     }
@@ -40,7 +41,7 @@ const Navbar: FC = () => {
                   Home
                 </a>
               </Link>
-              <Link href="/">
+              <Link href="/marketplace">
                 <a className="font-medium mr-8 text-gray-500 hover:text-gray-900">
                   Marketplace
                 </a>
@@ -71,7 +72,7 @@ const Navbar: FC = () => {
           </div>
         </nav>
       </div>
-      {account.data && (
+      {account.data && !pathname.includes("/marketplace") && (
         <div className="flex justify-end pt-1 sm:px-6 lg:px-8">
           <div className="text-white bg-indigo-600 rounded-md p-2">
             {account.data}

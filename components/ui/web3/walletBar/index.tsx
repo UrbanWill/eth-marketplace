@@ -1,11 +1,13 @@
 import { FC } from "react";
 
-const WalletBar: FC = () => (
-  <section className="text-white bg-indigo-600">
+interface Props {
+  account?: string;
+}
+
+const WalletBar: FC<Props> = ({ account }) => (
+  <section className="text-white bg-indigo-600 my-4">
     <div className="p-8">
-      <h1 className="text-2xl">
-        Hello, 0xd9D5cD41Fe921A743F2b5Fe71CC3070F5C176208
-      </h1>
+      <h1 className="text-2xl">{`Hello, ${account}`}</h1>
       <h2 className="subtitle mb-5 text-xl">
         I hope you are having a great day!
       </h2>
@@ -30,5 +32,7 @@ const WalletBar: FC = () => (
     </div>
   </section>
 );
-
+WalletBar.defaultProps = {
+  account: "",
+};
 export default WalletBar;
