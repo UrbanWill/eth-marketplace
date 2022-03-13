@@ -2,7 +2,7 @@ import Link from "next/link";
 import { useWeb3 } from "components/providers";
 import { IWeb3Context } from "utils/types";
 import { FC } from "react";
-import useAccount from "components/web3/hooks/useAccount";
+import useAccount from "components/hooks/web3/useAccount";
 import Button from "../button";
 
 const Navbar: FC = () => {
