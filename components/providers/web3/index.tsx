@@ -12,8 +12,8 @@ import {
 } from "react";
 import detectEthereumProvider from "@metamask/detect-provider";
 import Web3 from "web3";
-
 import { IWeb3Context, IWeb3ApiState } from "utils/types";
+import setupHooks from "./hooks/setupHooks";
 
 const initialContext = {
   provider: null,
@@ -22,6 +22,7 @@ const initialContext = {
   isLoading: true,
   connect: () => {},
   isWeb3Loaded: false,
+  hooks: setupHooks(null),
 };
 
 // TODO: Drop Web3 if favour of Ethers, and/or drop Web3 and detectEthereumProvider
@@ -55,25 +56,30 @@ const Web3Provider: FC<ReactNode> = ({ children }) => {
   }, []);
 
   // eslint-disable-next-line no-underscore-dangle
-  const _web3Api = useMemo(
-    () => ({
+  const _web3Api = useMemo(() => {
+    const { web3, provider, isLoading } = web3Api;
+
+    const handleConnect = async () => {
+      if (provider) {
+        // @ts-expect-error
+        return provider?.request({
+          method: "eth_requestAccounts",
+        });
+      }
+      return console.error(
+        new Error(
+          "Cannot connect to Metamask, try to reload your browser please."
+        )
+      );
+    };
+
+    return {
       ...web3Api,
-      isWeb3Loaded: !!(!web3Api.isLoading && web3Api.web3),
-      connect: web3Api.provider
-        ? async () =>
-            // @ts-expect-error
-            web3Api?.provider?.request({
-              method: "eth_requestAccounts",
-            })
-        : () =>
-            console.error(
-              new Error(
-                "Cannot connect to Metamask, try to reload your browser please."
-              )
-            ),
-    }),
-    [web3Api]
-  );
+      isWeb3Loaded: !!(!isLoading && web3),
+      hooks: setupHooks(web3),
+      connect: handleConnect,
+    };
+  }, [web3Api]);
 
   return (
     <Web3Context.Provider value={_web3Api}>{children}</Web3Context.Provider>

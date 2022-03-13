@@ -27,9 +27,14 @@ interface IWeb3ApiState {
   isLoading: boolean;
 }
 
+interface IHooks {
+  useAccount: () => { account: string | null };
+}
+
 interface IWeb3Context extends IWeb3ApiState {
   isWeb3Loaded: boolean;
-  connect?: () => void;
+  connect: () => void;
+  hooks: IHooks;
 }
 
 export type { Course, IParams, IWeb3Context, IWeb3ApiState };

@@ -5,10 +5,12 @@ import { FC } from "react";
 import Button from "../button";
 
 const Navbar: FC = () => {
-  const { connect, isWeb3Loaded, isLoading } = useWeb3() as IWeb3Context;
+  const { connect, isWeb3Loaded, isLoading, hooks } = useWeb3() as IWeb3Context;
+  const { account } = hooks.useAccount();
 
   return (
     <section>
+      {account}
       <div className="relative pt-6 px-4 sm:px-6 lg:px-8">
         <nav className="relative" aria-label="Global">
           <div className="flex justify-between items-center">
