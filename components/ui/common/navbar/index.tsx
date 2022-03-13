@@ -10,10 +10,10 @@ const Navbar: FC = () => {
   const { account } = useAccount();
 
   const getWeb3Button = () => {
-    if (account) {
+    if (account.data) {
       return (
         <Button
-          text="Hi there"
+          text={`Hi there ${account.isAdmin ? "Admin" : ""}`}
           isHoverable={false}
           className="cursor-default"
           variant="red"
@@ -71,10 +71,10 @@ const Navbar: FC = () => {
           </div>
         </nav>
       </div>
-      {account && (
+      {account.data && (
         <div className="flex justify-end pt-1 sm:px-6 lg:px-8">
           <div className="text-white bg-indigo-600 rounded-md p-2">
-            {account}
+            {account.data}
           </div>
         </div>
       )}

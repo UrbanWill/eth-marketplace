@@ -28,7 +28,8 @@ interface IWeb3ApiState {
 }
 
 interface IHooks {
-  useAccount: () => { account: string | null };
+  // TODO: Improve this typing with SWRResponse
+  useAccount: () => any;
 }
 
 interface IWeb3Context extends IWeb3ApiState {
