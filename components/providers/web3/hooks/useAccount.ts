@@ -15,6 +15,14 @@ const handler = (web3: Web3 | null) => () => {
     getAccount();
   }, [web3]);
 
+  useEffect(() => {
+    if (window.ethereum) {
+      window.ethereum.on("accountsChanged", (accounts: string[]) => {
+        setAccount(accounts[0] ?? null);
+      });
+    }
+  }, []);
+
   return { account };
 };
 

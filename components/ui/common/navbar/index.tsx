@@ -9,11 +9,28 @@ const Navbar: FC = () => {
   const { connect, isWeb3Loaded, isLoading } = useWeb3() as IWeb3Context;
   const { account } = useAccount();
 
-  console.log({ account });
+  const getWeb3Button = () => {
+    if (account) {
+      return (
+        <Button
+          text="Hi there"
+          isHoverable={false}
+          className="cursor-default"
+          variant="red"
+        />
+      );
+    }
+    return (
+      <Button
+        onHandleClick={connect}
+        disabled={isLoading}
+        text={isLoading ? "Loading..." : "Connect"}
+      />
+    );
+  };
 
   return (
     <section>
-      {account}
       <div className="relative pt-6 px-4 sm:px-6 lg:px-8">
         <nav className="relative" aria-label="Global">
           <div className="flex justify-between items-center">
@@ -41,11 +58,7 @@ const Navbar: FC = () => {
                 </a>
               </Link>
               {isWeb3Loaded ? (
-                <Button
-                  onHandleClick={connect}
-                  disabled={isLoading}
-                  text={isLoading ? "Loading..." : "Connect"}
-                />
+                getWeb3Button()
               ) : (
                 <Button
                   onHandleClick={() => {
@@ -58,6 +71,13 @@ const Navbar: FC = () => {
           </div>
         </nav>
       </div>
+      {account && (
+        <div className="flex justify-end pt-1 sm:px-6 lg:px-8">
+          <div className="text-white bg-indigo-600 rounded-md p-2">
+            {account}
+          </div>
+        </div>
+      )}
     </section>
   );
 };
