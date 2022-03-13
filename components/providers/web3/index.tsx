@@ -22,7 +22,7 @@ const initialContext = {
   isLoading: true,
   connect: () => {},
   isWeb3Loaded: false,
-  hooks: setupHooks(null),
+  getHooks: () => setupHooks(null),
 };
 
 // TODO: Drop Web3 if favour of Ethers, and/or drop Web3 and detectEthereumProvider
@@ -76,7 +76,7 @@ const Web3Provider: FC<ReactNode> = ({ children }) => {
     return {
       ...web3Api,
       isWeb3Loaded: !!(!isLoading && web3),
-      hooks: setupHooks(web3),
+      getHooks: () => setupHooks(web3),
       connect: handleConnect,
     };
   }, [web3Api]);
@@ -89,3 +89,8 @@ const Web3Provider: FC<ReactNode> = ({ children }) => {
 export const useWeb3 = () => useContext(Web3Context);
 
 export default Web3Provider;
+
+export const useHooks = (callback: any) => {
+  const { getHooks } = useWeb3();
+  return callback(getHooks());
+};

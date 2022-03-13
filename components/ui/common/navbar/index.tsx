@@ -2,11 +2,14 @@ import Link from "next/link";
 import { useWeb3 } from "components/providers";
 import { IWeb3Context } from "utils/types";
 import { FC } from "react";
+import useAccount from "components/web3/hooks/useAccount";
 import Button from "../button";
 
 const Navbar: FC = () => {
-  const { connect, isWeb3Loaded, isLoading, hooks } = useWeb3() as IWeb3Context;
-  const { account } = hooks.useAccount();
+  const { connect, isWeb3Loaded, isLoading } = useWeb3() as IWeb3Context;
+  const { account } = useAccount();
+
+  console.log({ account });
 
   return (
     <section>
