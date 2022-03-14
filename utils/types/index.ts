@@ -34,9 +34,9 @@ interface IHooks {
 }
 
 interface IWeb3Context extends IWeb3ApiState {
-  isWeb3Loaded: boolean;
+  requireInstall: boolean;
   connect: () => void;
-  getHooks: () => IHooks;
+  hooks: IHooks | null;
 }
 
 export type { Course, IParams, IWeb3Context, IWeb3ApiState, IHooks };

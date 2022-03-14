@@ -13,7 +13,7 @@ const adminAddresses: IIndexable = {
 };
 
 const handler = (web3: Web3 | null) => () => {
-  const { data, mutate, ...rest } = useSWR(
+  const { data, error, mutate, ...rest } = useSWR(
     () => (web3 ? "web3/accounts" : null),
     async () => {
       const accounts = await web3?.eth.getAccounts();
@@ -32,6 +32,7 @@ const handler = (web3: Web3 | null) => () => {
   return {
     account: {
       data,
+      hasInitialResponse: data || error,
       // @ts-expect-error
       isAdmin: (data && adminAddresses[web3?.utils.keccak256(data)]) ?? false,
       mutate,

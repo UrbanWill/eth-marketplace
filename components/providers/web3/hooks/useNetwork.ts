@@ -21,7 +21,7 @@ const NETWORKS: IIndexable = {
 const targetNetwork = NETWORKS[process.env.NEXT_PUBLIC_TARGET_CHAIN_ID];
 
 const handler = (web3: Web3 | null) => () => {
-  const { data, mutate, ...rest } = useSWR(
+  const { data, error, mutate, ...rest } = useSWR(
     () => (web3 ? "web3/network" : null),
     async () => {
       const chainId = await web3?.eth.getChainId();
@@ -44,6 +44,7 @@ const handler = (web3: Web3 | null) => () => {
     network: {
       mutate,
       data,
+      hasInitialResponse: data || error,
       target: targetNetwork,
       isSupported: data === targetNetwork,
       ...rest,
