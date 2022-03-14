@@ -2,9 +2,10 @@ import { FC } from "react";
 
 interface Props {
   account?: string;
+  network: string;
 }
 
-const WalletBar: FC<Props> = ({ account }) => (
+const WalletBar: FC<Props> = ({ account, network }) => (
   <section className="text-white bg-indigo-600 my-4">
     <div className="p-8">
       <h1 className="text-2xl">{`Hello, ${account}`}</h1>
@@ -25,7 +26,7 @@ const WalletBar: FC<Props> = ({ account }) => (
         <div>
           <div>
             <span>Currently on </span>
-            <strong className="text-2xl">Ethereum Main Network</strong>
+            <strong className="text-2xl">{network}</strong>
           </div>
         </div>
       </div>

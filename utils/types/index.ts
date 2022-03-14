@@ -30,6 +30,7 @@ interface IWeb3ApiState {
 interface IHooks {
   // TODO: Improve this typing with SWRResponse
   useAccount: () => any;
+  useNetwork: () => any;
 }
 
 interface IWeb3Context extends IWeb3ApiState {
