@@ -15,7 +15,13 @@ const Marketplace: NextPage<Props> = ({ courses }: Props) => {
   const { network } = useNetwork();
   return (
     <>
-      <WalletBar account={account.data} network={network.data} />
+      <WalletBar
+        account={account.data}
+        network={network.data}
+        target={network.target}
+        isSupported={network.isSupported}
+        data={network.data}
+      />
       <CourseList courses={courses}>
         {(course) => <CourseCard key={course.id} course={course} />}
       </CourseList>

@@ -3,9 +3,18 @@ import { FC } from "react";
 interface Props {
   account?: string;
   network: string;
+  target: string;
+  isSupported: boolean;
+  data: string;
 }
 
-const WalletBar: FC<Props> = ({ account, network }) => (
+const WalletBar: FC<Props> = ({
+  account,
+  network,
+  target,
+  isSupported,
+  data,
+}) => (
   <section className="text-white bg-indigo-600 my-4">
     <div className="p-8">
       <h1 className="text-2xl">{`Hello, ${account}`}</h1>
@@ -28,6 +37,21 @@ const WalletBar: FC<Props> = ({ account, network }) => (
             <span>Currently on </span>
             <strong className="text-2xl">{network}</strong>
           </div>
+          {!isSupported && (
+            <div className="bg-red-400 p-4 rounded-lg">
+              <div>Connected to wrong network</div>
+              <div>
+                <span>Connect to: </span>
+                <strong className="text-2xl">{target}</strong>
+              </div>
+            </div>
+          )}
+          {data && (
+            <div>
+              <span>Currently on </span>
+              <strong className="text-2xl">{data}</strong>
+            </div>
+          )}
         </div>
       </div>
     </div>
