@@ -3,8 +3,7 @@ import { WalletBar } from "components/ui/web3";
 import { CourseList, CourseCard } from "components/ui/course";
 import getAllCourses from "content/courses/fetcher";
 import { Course } from "utils/types";
-import useAccount from "components/hooks/web3/useAccount";
-import useNetwork from "components/hooks/web3/useNetwork";
+import { useAccount, useNetwork } from "components/hooks/web3";
 
 interface Props {
   courses: Course[];
@@ -20,7 +19,7 @@ const Marketplace: NextPage<Props> = ({ courses }: Props) => {
         network={network.data}
         target={network.target}
         isSupported={network.isSupported}
-        data={network.data}
+        hasInitialResponse={network.hasInitialResponse}
       />
       <CourseList courses={courses}>
         {(course) => <CourseCard key={course.id} course={course} />}

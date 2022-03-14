@@ -2,12 +2,12 @@ import Link from "next/link";
 import { useWeb3 } from "components/providers";
 import { IWeb3Context } from "utils/types";
 import { FC } from "react";
-import useAccount from "components/hooks/web3/useAccount";
+import { useAccount } from "components/hooks/web3";
 import { useRouter } from "next/router";
 import Button from "../button";
 
 const Navbar: FC = () => {
-  const { connect, isWeb3Loaded, isLoading } = useWeb3() as IWeb3Context;
+  const { connect, requireInstall, isLoading } = useWeb3() as IWeb3Context;
   const { account } = useAccount();
   const { pathname } = useRouter();
 
@@ -58,15 +58,15 @@ const Navbar: FC = () => {
                   Wishlist
                 </a>
               </Link>
-              {isWeb3Loaded ? (
-                getWeb3Button()
-              ) : (
+              {requireInstall ? (
                 <Button
                   onHandleClick={() => {
                     window.open("https://metamask.io/download.html", "_blank");
                   }}
                   text="Install Metamask"
                 />
+              ) : (
+                getWeb3Button()
               )}
             </div>
           </div>
