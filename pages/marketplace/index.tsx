@@ -1,6 +1,6 @@
 import type { NextPage, GetStaticProps } from "next";
 import { WalletBar } from "components/ui/web3";
-import { CourseList } from "components/ui/course";
+import { CourseList, CourseCard } from "components/ui/course";
 import getAllCourses from "content/courses/fetcher";
 import { Course } from "utils/types";
 import useAccount from "components/hooks/web3/useAccount";
@@ -16,7 +16,9 @@ const Marketplace: NextPage<Props> = ({ courses }: Props) => {
   return (
     <>
       <WalletBar account={account.data} network={network.data} />
-      <CourseList courses={courses} />
+      <CourseList courses={courses}>
+        {(course) => <CourseCard key={course.id} course={course} />}
+      </CourseList>
     </>
   );
 };
