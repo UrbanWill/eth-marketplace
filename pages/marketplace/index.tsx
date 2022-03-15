@@ -1,3 +1,4 @@
+import { useState } from "react";
 import type { NextPage, GetStaticProps } from "next";
 import { WalletBar } from "components/ui/web3";
 import { CourseList, CourseCard } from "components/ui/course";
@@ -5,12 +6,15 @@ import getAllCourses from "content/courses/fetcher";
 import { Course } from "utils/types";
 import { useAccount, useNetwork } from "components/hooks/web3";
 import { Button } from "components/ui/common";
+import { OrderModal } from "components/ui/order";
 
 interface Props {
   courses: Course[];
 }
 
 const Marketplace: NextPage<Props> = ({ courses }: Props) => {
+  const [selectedCourse, setSelectedCourse] = useState<Course | null>(null);
+
   const { account } = useAccount();
   const { network } = useNetwork();
   return (
@@ -30,12 +34,22 @@ const Marketplace: NextPage<Props> = ({ courses }: Props) => {
             course={course}
             Footer={() => (
               <div className="mt-4">
-                <Button variant="lightPurple" text="Purchase" />
+                <Button
+                  variant="lightPurple"
+                  text="Purchase"
+                  onHandleClick={() => setSelectedCourse(course)}
+                />
               </div>
             )}
           />
         )}
       </CourseList>
+      {selectedCourse && (
+        <OrderModal
+          course={selectedCourse}
+          onHandleClose={() => setSelectedCourse(null)}
+        />
+      )}
     </>
   );
 };

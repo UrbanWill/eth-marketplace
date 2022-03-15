@@ -1,4 +1,4 @@
 import Card from "./card";
+import OrderModal from "./modal";
 
-// eslint-disable-next-line import/prefer-default-export
-export { Card };
+export { Card, OrderModal };

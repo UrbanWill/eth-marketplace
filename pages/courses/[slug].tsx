@@ -1,7 +1,7 @@
 import type { NextPage, GetStaticPaths, GetStaticProps } from "next";
 
 import { CourseHero, Keypoints, Curriculum } from "components/ui/course";
-import { Modal } from "components/ui/common";
+// import { Modal } from "components/ui/common";
 import getAllCourses from "content/courses/fetcher";
 import { Course as CourseInterface, IParams } from "utils/types";
 
@@ -14,7 +14,7 @@ const Course: NextPage<Props> = ({ course }: Props) => (
     <CourseHero course={course} />
     <Keypoints points={course.wsl} />
     <Curriculum locked />
-    <Modal />
+    {/* <Modal isOpen={false} /> */}
   </>
 );
 
