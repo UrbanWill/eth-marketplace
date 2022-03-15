@@ -1,6 +1,6 @@
 import { FC } from "react";
 
-type Variants = "purple" | "red";
+type Variants = "purple" | "red" | "lightPurple";
 
 interface Props {
   text: string;
@@ -21,6 +21,9 @@ const Button: FC<Props> = ({
 }) => {
   const variants = {
     purple: `text-white bg-indigo-600 ${isHoverable && "hover:bg-indigo-700"}`,
+    lightPurple: `text-indigo-700 bg-indigo-100 ${
+      isHoverable && "hover:bg-indigo-200"
+    }`,
     red: `text-white bg-red-600 ${isHoverable && "hover:bg-red-700"}`,
   };
 

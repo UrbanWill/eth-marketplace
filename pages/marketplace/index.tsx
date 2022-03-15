@@ -4,6 +4,7 @@ import { CourseList, CourseCard } from "components/ui/course";
 import getAllCourses from "content/courses/fetcher";
 import { Course } from "utils/types";
 import { useAccount, useNetwork } from "components/hooks/web3";
+import { Button } from "components/ui/common";
 
 interface Props {
   courses: Course[];
@@ -22,7 +23,18 @@ const Marketplace: NextPage<Props> = ({ courses }: Props) => {
         hasInitialResponse={network.hasInitialResponse}
       />
       <CourseList courses={courses}>
-        {(course) => <CourseCard key={course.id} course={course} />}
+        {/* Not sure if I like this pattern, maybe change. Interesting practice though */}
+        {(course) => (
+          <CourseCard
+            key={course.id}
+            course={course}
+            Footer={() => (
+              <div className="mt-4">
+                <Button variant="lightPurple" text="Purchase" />
+              </div>
+            )}
+          />
+        )}
       </CourseList>
     </>
   );
