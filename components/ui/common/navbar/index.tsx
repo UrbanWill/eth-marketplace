@@ -1,10 +1,10 @@
-import Link from "next/link";
 import { useWeb3 } from "components/providers";
 import { IWeb3Context } from "utils/types";
 import { FC } from "react";
 import { useAccount } from "components/hooks/web3";
 import { useRouter } from "next/router";
 import Button from "../button";
+import ActiveLink from "../link";
 
 const Navbar: FC = () => {
   const { connect, requireInstall, isLoading } = useWeb3() as IWeb3Context;
@@ -36,28 +36,32 @@ const Navbar: FC = () => {
         <nav className="relative" aria-label="Global">
           <div className="flex justify-between items-center">
             <div>
-              <Link href="/">
-                <a className="font-medium mr-8 text-gray-500 hover:text-gray-900">
-                  Home
-                </a>
-              </Link>
-              <Link href="/marketplace">
-                <a className="font-medium mr-8 text-gray-500 hover:text-gray-900">
-                  Marketplace
-                </a>
-              </Link>
-              <Link href="/">
-                <a className="font-medium mr-8 text-gray-500 hover:text-gray-900">
-                  Blogs
-                </a>
-              </Link>
+              <ActiveLink
+                href="/"
+                className="font-medium mr-8 hover:text-gray-900"
+              >
+                <a>Home</a>
+              </ActiveLink>
+              <ActiveLink
+                href="/marketplace"
+                className="font-medium mr-8 hover:text-gray-900"
+              >
+                <a>Marketplace</a>
+              </ActiveLink>
+              <ActiveLink
+                href="/blogs"
+                className="font-medium mr-8 hover:text-gray-900"
+              >
+                <a>Blogs</a>
+              </ActiveLink>
             </div>
             <div>
-              <Link href="/">
-                <a className="font-medium mr-8 text-gray-500 hover:text-gray-900">
-                  Wishlist
-                </a>
-              </Link>
+              <ActiveLink
+                href="/wishlist"
+                className="font-medium mr-8 text-gray-500 hover:text-gray-900"
+              >
+                <a>Wishlist</a>
+              </ActiveLink>
               {requireInstall ? (
                 <Button
                   onHandleClick={() => {
