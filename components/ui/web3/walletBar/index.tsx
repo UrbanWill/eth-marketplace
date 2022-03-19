@@ -16,7 +16,7 @@ const WalletBar: FC = () => {
   } = network;
 
   return (
-    <section className="text-white bg-indigo-600 mt-4 rounded-lg">
+    <section className="text-white bg-indigo-600 my-4 rounded-lg">
       <div className="p-8">
         <h1 className="text-2xl">{`Hello, ${accountNumber}`}</h1>
         <h2 className="subtitle mb-5 text-xl">
