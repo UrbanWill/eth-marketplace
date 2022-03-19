@@ -8,7 +8,7 @@ interface Props {
 }
 
 const EthRates: FC<Props> = ({ eth, ethPerItem }) => (
-  <div className="grid grid-cols-4 mb-5">
+  <div className="grid grid-cols-4">
     <div className="flex flex-1 items-stretch text-center">
       <div className="p-10 border drop-shadow rounded-md">
         <div className="flex items-center">

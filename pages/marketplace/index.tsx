@@ -5,7 +5,7 @@ import { CourseList, CourseCard } from "components/ui/course";
 import getAllCourses from "content/courses/fetcher";
 import { Course } from "utils/types";
 import { useWalletInfo } from "components/hooks/web3";
-import { Button } from "components/ui/common";
+import { Button, Breadcrumbs } from "components/ui/common";
 import { OrderModal } from "components/ui/order";
 import useEthPrice from "components/hooks/useEthPrice";
 
@@ -29,6 +29,7 @@ const Marketplace: NextPage<Props> = ({ courses }: Props) => {
         hasInitialResponse={network.hasInitialResponse}
       />
       <EthRates eth={eth.data} ethPerItem={eth.perItem} />
+      <Breadcrumbs />
       <CourseList courses={courses}>
         {/* Not sure if I like this pattern, maybe change. Interesting practice though */}
         {(course) => (
