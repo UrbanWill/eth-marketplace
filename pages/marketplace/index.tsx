@@ -1,12 +1,13 @@
 import { useState } from "react";
 import type { NextPage, GetStaticProps } from "next";
-import { WalletBar } from "components/ui/web3";
+import { WalletBar, EthRates } from "components/ui/web3";
 import { CourseList, CourseCard } from "components/ui/course";
 import getAllCourses from "content/courses/fetcher";
 import { Course } from "utils/types";
 import { useAccount, useNetwork } from "components/hooks/web3";
 import { Button } from "components/ui/common";
 import { OrderModal } from "components/ui/order";
+import useEthPrice from "components/hooks/useEthPrice";
 
 interface Props {
   courses: Course[];
@@ -14,6 +15,7 @@ interface Props {
 
 const Marketplace: NextPage<Props> = ({ courses }: Props) => {
   const [selectedCourse, setSelectedCourse] = useState<Course | null>(null);
+  const { eth } = useEthPrice();
 
   const { account } = useAccount();
   const { network } = useNetwork();
@@ -26,6 +28,7 @@ const Marketplace: NextPage<Props> = ({ courses }: Props) => {
         isSupported={network.isSupported}
         hasInitialResponse={network.hasInitialResponse}
       />
+      <EthRates eth={eth.data} ethPerItem={eth.perItem} />
       <CourseList courses={courses}>
         {/* Not sure if I like this pattern, maybe change. Interesting practice though */}
         {(course) => (
