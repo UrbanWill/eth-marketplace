@@ -6,16 +6,17 @@ import { Course } from "utils/types";
 interface Props {
   course: Course;
   Footer?: () => ReactElement | null;
+  disabled?: boolean;
 }
 
-const CourseCard: FC<Props> = ({ course, Footer }) => {
+const CourseCard: FC<Props> = ({ course, Footer, disabled }) => {
   const { coverImage, title, type, description, slug } = course;
   return (
     <div className="bg-white rounded-xl shadow-md overflow-hidden md:max-w-2xl">
       <div className="flex h-full">
         <div className="flex-1 h-full next-image-wrapper">
           <Image
-            className="object-cover"
+            className={`object-cover ${disabled && "filter grayscale"}`}
             src={coverImage}
             layout="responsive"
             width="200"
@@ -42,5 +43,6 @@ const CourseCard: FC<Props> = ({ course, Footer }) => {
 
 CourseCard.defaultProps = {
   Footer: () => null,
+  disabled: false,
 };
 export default CourseCard;

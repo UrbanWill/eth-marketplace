@@ -4,7 +4,7 @@ import { WalletBar, EthRates } from "components/ui/web3";
 import { CourseList, CourseCard } from "components/ui/course";
 import getAllCourses from "content/courses/fetcher";
 import { Course } from "utils/types";
-import { useAccount, useNetwork } from "components/hooks/web3";
+import { useWalletInfo } from "components/hooks/web3";
 import { Button } from "components/ui/common";
 import { OrderModal } from "components/ui/order";
 import useEthPrice from "components/hooks/useEthPrice";
@@ -15,10 +15,10 @@ interface Props {
 
 const Marketplace: NextPage<Props> = ({ courses }: Props) => {
   const [selectedCourse, setSelectedCourse] = useState<Course | null>(null);
-  const { eth } = useEthPrice();
 
-  const { account } = useAccount();
-  const { network } = useNetwork();
+  const { eth } = useEthPrice();
+  const { account, network, canPurchaseCourse } = useWalletInfo();
+
   return (
     <>
       <WalletBar
@@ -35,11 +35,13 @@ const Marketplace: NextPage<Props> = ({ courses }: Props) => {
           <CourseCard
             key={course.id}
             course={course}
+            disabled={!canPurchaseCourse}
             Footer={() => (
               <div className="mt-4">
                 <Button
                   variant="lightPurple"
                   text="Purchase"
+                  disabled={!canPurchaseCourse}
                   onHandleClick={() => setSelectedCourse(course)}
                 />
               </div>
