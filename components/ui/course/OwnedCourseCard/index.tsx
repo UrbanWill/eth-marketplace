@@ -1,6 +1,6 @@
 import { FC } from "react";
 
-const Card: FC = () => (
+const OwnedCourseCard: FC = () => (
   <div className="bg-white shadow overflow-hidden sm:rounded-lg mb-3">
     <div className="px-4 py-5 sm:px-6">
       <h3 className="text-lg leading-6 font-medium text-gray-900">
@@ -118,4 +118,4 @@ const Card: FC = () => (
     </div>
   </div>
 );
-export default Card;
+export default OwnedCourseCard;
