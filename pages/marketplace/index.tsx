@@ -7,7 +7,6 @@ import { Course } from "utils/types";
 import { useWalletInfo } from "components/hooks/web3";
 import { Button, Breadcrumbs } from "components/ui/common";
 import { OrderModal } from "components/ui/order";
-import useEthPrice from "components/hooks/useEthPrice";
 
 interface Props {
   courses: Course[];
@@ -16,19 +15,12 @@ interface Props {
 const Marketplace: NextPage<Props> = ({ courses }: Props) => {
   const [selectedCourse, setSelectedCourse] = useState<Course | null>(null);
 
-  const { eth } = useEthPrice();
-  const { account, network, canPurchaseCourse } = useWalletInfo();
+  const { canPurchaseCourse } = useWalletInfo();
 
   return (
     <>
-      <WalletBar
-        account={account.data}
-        network={network.data}
-        target={network.target}
-        isSupported={network.isSupported}
-        hasInitialResponse={network.hasInitialResponse}
-      />
-      <EthRates eth={eth.data} ethPerItem={eth.perItem} />
+      <WalletBar />
+      <EthRates />
       <Breadcrumbs />
       <CourseList courses={courses}>
         {/* Not sure if I like this pattern, maybe change. Interesting practice though */}

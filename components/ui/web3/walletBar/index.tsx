@@ -1,27 +1,24 @@
 import { FC } from "react";
 import { useWeb3 } from "components/providers";
+import { useWalletInfo } from "components/hooks/web3";
 
-interface Props {
-  account?: string;
-  network: string;
-  target: string;
-  isSupported: boolean;
-  hasInitialResponse: boolean;
-}
-
-const WalletBar: FC<Props> = ({
-  account,
-  network,
-  target,
-  isSupported,
-  hasInitialResponse,
-}) => {
+const WalletBar: FC = () => {
   const { requireInstall } = useWeb3();
+  const { network, account } = useWalletInfo();
+
+  const { data: accountNumber } = account;
+
+  const {
+    data: networkData,
+    target,
+    isSupported,
+    hasInitialResponse,
+  } = network;
 
   return (
     <section className="text-white bg-indigo-600 mt-4 rounded-lg">
       <div className="p-8">
-        <h1 className="text-2xl">{`Hello, ${account}`}</h1>
+        <h1 className="text-2xl">{`Hello, ${accountNumber}`}</h1>
         <h2 className="subtitle mb-5 text-xl">
           I hope you are having a great day!
         </h2>
@@ -51,10 +48,10 @@ const WalletBar: FC<Props> = ({
                 Cannot connect to network. Please install Metamask.
               </div>
             )}
-            {network && (
+            {networkData && (
               <div>
                 <span>Currently on </span>
-                <strong className="text-2xl">{network}</strong>
+                <strong className="text-2xl">{networkData}</strong>
               </div>
             )}
           </div>
@@ -62,8 +59,5 @@ const WalletBar: FC<Props> = ({
       </div>
     </section>
   );
-};
-WalletBar.defaultProps = {
-  account: "",
 };
 export default WalletBar;
