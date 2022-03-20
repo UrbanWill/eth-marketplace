@@ -6,6 +6,7 @@ import Modal from "./modal";
 import Button from "./button";
 import ActiveLink from "./link";
 import Message from "./message";
+import Loader from "./loader";
 
 export {
   Footer,
@@ -16,4 +17,5 @@ export {
   Button,
   ActiveLink,
   Message,
+  Loader,
 };
