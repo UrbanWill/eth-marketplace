@@ -4,6 +4,7 @@ import Keypoints from "./keypoints";
 import Curriculum from "./curriculum";
 import CourseCard from "./CourseCard";
 import OwnedCourseCard from "./OwnedCourseCard";
+import CourseFilter from "./filter";
 
 export {
   CourseList,
@@ -12,4 +13,5 @@ export {
   Curriculum,
   CourseCard,
   OwnedCourseCard,
+  CourseFilter,
 };
