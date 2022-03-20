@@ -2,7 +2,7 @@ import { useState } from "react";
 import type { NextPage, GetStaticProps } from "next";
 import { CourseList, CourseCard } from "components/ui/course";
 import getAllCourses from "content/courses/fetcher";
-import { Course } from "utils/types";
+import { Course, IOrder } from "utils/types";
 import { useWalletInfo } from "components/hooks/web3";
 import { Button } from "components/ui/common";
 import { OrderModal } from "components/ui/order";
@@ -16,6 +16,10 @@ const Marketplace: NextPage<Props> = ({ courses }: Props) => {
   const [selectedCourse, setSelectedCourse] = useState<Course | null>(null);
 
   const { canPurchaseCourse } = useWalletInfo();
+
+  const purchaseCourse = (order: IOrder) => {
+    alert(JSON.stringify(order));
+  };
 
   return (
     <>
@@ -44,6 +48,7 @@ const Marketplace: NextPage<Props> = ({ courses }: Props) => {
         <OrderModal
           course={selectedCourse}
           onHandleClose={() => setSelectedCourse(null)}
+          onHandleSubmit={purchaseCourse}
         />
       )}
     </>

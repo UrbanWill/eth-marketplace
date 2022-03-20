@@ -39,4 +39,10 @@ interface IWeb3Context extends IWeb3ApiState {
   hooks: IHooks | null;
 }
 
-export type { Course, IParams, IWeb3Context, IWeb3ApiState, IHooks };
+interface IOrder {
+  price: string;
+  email: string;
+  confirmationEmail: string;
+}
+
+export type { Course, IParams, IWeb3Context, IWeb3ApiState, IHooks, IOrder };

@@ -2,6 +2,8 @@ import { FC } from "react";
 
 type Variants = "purple" | "red" | "lightPurple";
 
+type ButtonType = "button" | "submit";
+
 interface Props {
   text: string;
   className?: string;
@@ -9,6 +11,7 @@ interface Props {
   onHandleClick?: () => void;
   isHoverable?: boolean;
   variant?: Variants;
+  type?: ButtonType;
 }
 
 const Button: FC<Props> = ({
@@ -18,6 +21,7 @@ const Button: FC<Props> = ({
   onHandleClick,
   isHoverable,
   variant = "purple",
+  type = "button",
 }) => {
   const variants = {
     purple: `text-white bg-indigo-600 ${isHoverable && "hover:bg-indigo-700"}`,
@@ -29,7 +33,8 @@ const Button: FC<Props> = ({
 
   return (
     <button
-      type="button"
+      // eslint-disable-next-line react/button-has-type
+      type={type}
       disabled={disabled}
       className={`disabled:opacity-50 disabled:cursor-not-allowed px-8 py-3 border rounded-md text-base font-medium ${className} ${variants[variant]}`}
       onClick={onHandleClick}
@@ -45,5 +50,6 @@ Button.defaultProps = {
   disabled: false,
   isHoverable: true,
   variant: "purple",
+  type: "button",
 };
 export default Button;
