@@ -49,10 +49,10 @@ const createFormState = (
 };
 
 const OrderModal: FC<Props> = ({ course, onHandleClose, onHandleSubmit }) => {
-  const [isOpen, setIsOpen] = useState(false);
-  const [order, setOrder] = useState(defaultOrder);
-  const [enablePrice, setEnablePrice] = useState(false);
-  const [hasAgreedTOS, setHasAgreedTOS] = useState(false);
+  const [isOpen, setIsOpen] = useState<boolean>(false);
+  const [order, setOrder] = useState<IOrder>(defaultOrder);
+  const [enablePrice, setEnablePrice] = useState<boolean>(false);
+  const [hasAgreedTOS, setHasAgreedTOS] = useState<boolean>(false);
 
   const { eth } = useEthPrice();
 
@@ -93,7 +93,6 @@ const OrderModal: FC<Props> = ({ course, onHandleClose, onHandleSubmit }) => {
 
   const handleSubmit = (event: FormEvent<HTMLFormElement>) => {
     event.preventDefault();
-    // alert(`email: ${order.email}`);
     onHandleSubmit(order);
   };
 
