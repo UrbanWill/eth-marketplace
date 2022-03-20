@@ -1,6 +1,5 @@
 import { FC } from "react";
 
-// import { OwnedCourseCard } from "components/ui/course";
 import { MarketplaceHeader } from "components/ui/marketplace";
 import { OwnedCourseCard } from "components/ui/course";
 

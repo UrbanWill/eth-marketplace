@@ -5,5 +5,15 @@ import Breadcrumbs from "./breadcrumbs";
 import Modal from "./modal";
 import Button from "./button";
 import ActiveLink from "./link";
+import Message from "./message";
 
-export { Footer, Navbar, Hero, Breadcrumbs, Modal, Button, ActiveLink };
+export {
+  Footer,
+  Navbar,
+  Hero,
+  Breadcrumbs,
+  Modal,
+  Button,
+  ActiveLink,
+  Message,
+};
