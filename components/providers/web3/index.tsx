@@ -41,13 +41,12 @@ const Web3Provider: FC<ReactNode> = ({ children }) => {
         // @ts-ignore
         const web3 = new Web3(provider);
         const contract = await loadContract("CourseMarketplace", web3);
-        console.log(contract);
         setWeb3Api({
           // @ts-ignore
           provider,
           web3,
           hooks: setupHooks(web3),
-          contract: null,
+          contract,
           isLoading: false,
         });
       } else {
