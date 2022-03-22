@@ -1,5 +1,6 @@
 import { ParsedUrlQuery } from "querystring";
 import Web3 from "web3";
+import { Contract } from "web3-eth-contract";
 import detectEthereumProvider from "@metamask/detect-provider";
 
 interface Course {
@@ -23,7 +24,7 @@ interface IParams extends ParsedUrlQuery {
 interface IWeb3ApiState {
   provider: typeof detectEthereumProvider | null;
   web3: null | Web3;
-  contract: null;
+  contract: Contract | null;
   isLoading: boolean;
 }
 

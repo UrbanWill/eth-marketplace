@@ -13,6 +13,7 @@ import {
 import detectEthereumProvider from "@metamask/detect-provider";
 import Web3 from "web3";
 import { IWeb3Context, IWeb3ApiState } from "utils/types";
+import loadContract from "utils/loadContract";
 import setupHooks from "./hooks/setupHooks";
 
 const initialContext = {
@@ -39,6 +40,8 @@ const Web3Provider: FC<ReactNode> = ({ children }) => {
       if (provider) {
         // @ts-ignore
         const web3 = new Web3(provider);
+        const contract = await loadContract("CourseMarketplace", web3);
+        console.log(contract);
         setWeb3Api({
           // @ts-ignore
           provider,
