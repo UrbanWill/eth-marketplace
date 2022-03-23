@@ -1,6 +1,6 @@
 import { FC } from "react";
 
-type Variants = "purple" | "red" | "lightPurple";
+type Variants = "purple" | "red" | "lightPurple" | "white";
 
 type ButtonType = "button" | "submit";
 
@@ -29,6 +29,7 @@ const Button: FC<Props> = ({
       isHoverable && "hover:bg-indigo-200"
     }`,
     red: `text-white bg-red-600 ${isHoverable && "hover:bg-red-700"}`,
+    white: "text-black bg-white",
   };
 
   return (
@@ -36,7 +37,7 @@ const Button: FC<Props> = ({
       // eslint-disable-next-line react/button-has-type
       type={type}
       disabled={disabled}
-      className={`disabled:opacity-50 disabled:cursor-not-allowed px-8 py-3 border rounded-md text-base font-medium ${className} ${variants[variant]}`}
+      className={`disabled:opacity-50 disabled:cursor-not-allowed xs:px-8 xs:py-3 border rounded-md text-base font-medium ${className} ${variants[variant]}`}
       onClick={onHandleClick}
     >
       {text}
