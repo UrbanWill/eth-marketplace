@@ -52,6 +52,14 @@ interface ISetupHooks {
   contract: Contract | null;
 }
 
+interface IPurchasedCourse extends Course {
+  ownedCourseId: string;
+  proof: string;
+  owner: string;
+  state: number;
+  price: string;
+}
+
 export type {
   Course,
   IParams,
@@ -60,4 +68,5 @@ export type {
   IHooks,
   IOrder,
   ISetupHooks,
+  IPurchasedCourse,
 };

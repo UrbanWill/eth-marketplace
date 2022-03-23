@@ -1,3 +1,4 @@
+/* eslint-disable no-confusing-arrow */
 /* eslint-disable operator-linebreak */
 /* eslint-disable implicit-arrow-linebreak */
 /* eslint-disable comma-dangle */
@@ -10,11 +11,13 @@ import normalizeOwnedCourse from "utils/normalize";
 
 const NO_OWNER = "0x0000000000000000000000000000000000000000";
 
+// TODO: Refactor this to use reducer
 const handler =
   (web3: Web3 | null, contract: Contract | null) =>
   (courses: Course[], account: string | null) => {
     const swrRes = useSWR(
-      () => (web3 && contract && account ? "web3/ownedCourses" : null),
+      () =>
+        web3 && contract && account ? `web3/ownedCourses/${account}` : null,
       async () => {
         const formattedItems = await Promise.all(
           courses.map(async (course) => {
@@ -36,11 +39,11 @@ const handler =
               return normalizeOwnedCourse(course, ownedCourse);
             }
 
-            return [];
+            return null;
           })
         );
 
-        return formattedItems;
+        return formattedItems.filter((course) => !!course);
       }
     );
 
