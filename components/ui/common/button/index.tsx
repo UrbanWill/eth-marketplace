@@ -37,7 +37,7 @@ const Button: FC<Props> = ({
       // eslint-disable-next-line react/button-has-type
       type={type}
       disabled={disabled}
-      className={`disabled:opacity-50 disabled:cursor-not-allowed xs:px-8 xs:py-3 border rounded-md text-base font-medium ${className} ${variants[variant]}`}
+      className={`disabled:opacity-50 disabled:cursor-not-allowed xs:px-8 xs:py-3 p-2 border rounded-md text-base font-medium ${className} ${variants[variant]}`}
       onClick={onHandleClick}
     >
       {text}

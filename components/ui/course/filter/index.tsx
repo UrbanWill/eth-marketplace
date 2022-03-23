@@ -4,20 +4,20 @@ import { Button } from "components/ui/common";
 /** TODO: A shared dropdown component, consider React-Select */
 
 const CourseFilter: FC = () => (
-  <div className="flex items-center my-4">
+  <div className="flex flex-col md:flex-row items-center my-4">
     <div className="flex mr-2 relative rounded-md">
       <input
         type="text"
         name="account"
         id="account"
-        className="w-96 focus:ring-indigo-500 shadow-md focus:border-indigo-500 block pl-7 p-4 sm:text-sm border-gray-300 rounded-md"
+        className="w-52 xs:w-96 focus:ring-indigo-500 shadow-md focus:border-indigo-500 block pl-7 p-4 sm:text-sm border-gray-300 rounded-md"
         placeholder="0x2341ab..."
       />
       <Button text="Search" />
     </div>
     <div className="relative text-gray-700">
       <select
-        className="w-72 h-10 pl-3 pr-6 text-base placeholder-gray-600 border rounded-lg appearance-none focus:shadow-outline"
+        className="w-72 h-10 pl-3 pr-6 mt-4 md:mt-0 text-base placeholder-gray-600 border rounded-lg appearance-none focus:shadow-outline"
         placeholder="Regular input"
       >
         <option>A regular sized select input</option>
