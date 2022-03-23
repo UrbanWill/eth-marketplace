@@ -14,7 +14,7 @@ interface Props {
 const Breadcrumbs: FC<Props> = ({ items }) => (
   <nav
     aria-label="breadcrumb"
-    className="flex flex-row-reverse py-4 px-4 sm:px-6 lg:px-8"
+    className="flex flex-row-reverse p-4 sm:px-6 lg:px-8"
   >
     <ol className="flex leading-none text-indigo-600 divide-x divide-indigo-400">
       {items.map((item, i) => (
