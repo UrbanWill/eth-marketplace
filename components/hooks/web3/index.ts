@@ -1,9 +1,21 @@
+/* eslint-disable comma-dangle */
 import { useHooks } from "components/providers/web3";
 
-import { IHooks } from "utils/types";
+import { IHooks, Course } from "utils/types";
 
 const useAccount = () => useHooks((hooks: IHooks) => hooks.useAccount)();
 const useNetwork = () => useHooks((hooks: IHooks) => hooks.useNetwork)();
+
+const useOwnedCourses = (courses: Course[], account: string | null) => {
+  const swrRes = useHooks((hooks: IHooks) => hooks.useOwnedCourses)(
+    courses,
+    account
+  );
+
+  return {
+    ownedCourses: swrRes,
+  };
+};
 
 const useWalletInfo = () => {
   const { account } = useAccount();
@@ -16,4 +28,4 @@ const useWalletInfo = () => {
   };
 };
 
-export { useAccount, useNetwork, useWalletInfo };
+export { useAccount, useNetwork, useWalletInfo, useOwnedCourses };

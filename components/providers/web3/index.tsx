@@ -23,7 +23,7 @@ const initialContext = {
   isLoading: true,
   connect: () => {},
   requireInstall: false,
-  hooks: setupHooks(null),
+  hooks: setupHooks({ web3: null, contract: null }),
 };
 
 // TODO: Drop Web3 if favour of Ethers, and/or drop Web3 and detectEthereumProvider
@@ -45,7 +45,7 @@ const Web3Provider: FC<ReactNode> = ({ children }) => {
           // @ts-ignore
           provider,
           web3,
-          hooks: setupHooks(web3),
+          hooks: setupHooks({ web3, contract }),
           contract,
           isLoading: false,
         });
@@ -60,7 +60,7 @@ const Web3Provider: FC<ReactNode> = ({ children }) => {
 
   // eslint-disable-next-line no-underscore-dangle
   const _web3Api = useMemo(() => {
-    const { web3, provider, isLoading } = web3Api;
+    const { web3, provider, isLoading, contract } = web3Api;
 
     const handleConnect = async () => {
       if (provider) {
@@ -81,7 +81,7 @@ const Web3Provider: FC<ReactNode> = ({ children }) => {
       requireInstall: !isLoading && !web3,
       connect: handleConnect,
       // TODO: Refactor this, hooks is possibly being called multiple times
-      hooks: setupHooks(web3),
+      hooks: setupHooks({ web3, contract }),
     };
   }, [web3Api]);
 

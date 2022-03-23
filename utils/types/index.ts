@@ -32,6 +32,7 @@ interface IHooks {
   // TODO: Improve this typing with SWRResponse
   useAccount: () => any;
   useNetwork: () => any;
+  useOwnedCourses: any;
 }
 
 interface IWeb3Context extends IWeb3ApiState {
@@ -46,4 +47,17 @@ interface IOrder {
   confirmationEmail: string;
 }
 
-export type { Course, IParams, IWeb3Context, IWeb3ApiState, IHooks, IOrder };
+interface ISetupHooks {
+  web3: Web3 | null;
+  contract: Contract | null;
+}
+
+export type {
+  Course,
+  IParams,
+  IWeb3Context,
+  IWeb3ApiState,
+  IHooks,
+  IOrder,
+  ISetupHooks,
+};
