@@ -6,6 +6,7 @@ import { Button, Message } from "components/ui/common";
 import { useOwnedCourses, useAccount } from "components/hooks/web3";
 import getAllCourses from "content/courses/fetcher";
 import { Course, IPurchasedCourse } from "utils/types";
+import { useRouter } from "next/router";
 
 interface Props {
   courses: Course[];
@@ -14,6 +15,7 @@ interface Props {
 const OwnedCourses: FC<Props> = ({ courses }) => {
   const { account } = useAccount();
   const { ownedCourses } = useOwnedCourses(courses, account.data);
+  const router = useRouter();
 
   return (
     <>
@@ -22,7 +24,10 @@ const OwnedCourses: FC<Props> = ({ courses }) => {
         {ownedCourses.data?.map((course: IPurchasedCourse) => (
           <OwnedCourseCard key={course.id} course={course}>
             <Message message="My custom message!" />
-            <Button text="Watch the course" />
+            <Button
+              text="Watch the course"
+              onHandleClick={() => router.push(`/courses/${course.slug}`)}
+            />
           </OwnedCourseCard>
         ))}
       </section>

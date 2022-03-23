@@ -6,8 +6,18 @@ interface Props {
   course: IPurchasedCourse;
 }
 
+interface IIndexable {
+  [key: string]: string;
+}
+
+const STATE_COLORS: IIndexable = {
+  purchased: "indigo",
+  activated: "green",
+  deactivated: "red",
+};
+
 const OwnedCourseCard: FC<Props> = ({ children, course }) => {
-  const { title, ownedCourseId, proof, price, coverImage } = course;
+  const { title, ownedCourseId, proof, price, coverImage, state } = course;
   return (
     <div className="bg-white border shadow overflow-hidden sm:rounded-lg mb-3">
       <div className="flex">
@@ -25,7 +35,12 @@ const OwnedCourseCard: FC<Props> = ({ children, course }) => {
         <div className="flex-4">
           <div className="px-4 py-5 sm:px-6">
             <h3 className="text-lg leading-6 font-medium text-gray-900">
-              {title}
+              <span className="mr-2">{title}</span>
+              <span
+                className={`text-xs text-${STATE_COLORS[state]}-700 bg-${STATE_COLORS[state]}-200 rounded-full p-2`}
+              >
+                {state}
+              </span>
             </h3>
             <p className="mt-1 max-w-2xl text-sm text-gray-500">
               {`${price} ETH`}
