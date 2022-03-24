@@ -5,6 +5,7 @@ import Curriculum from "./curriculum";
 import CourseCard from "./CourseCard";
 import OwnedCourseCard from "./OwnedCourseCard";
 import CourseFilter from "./filter";
+import ManagedCourseCard from "./managedCourseCard";
 
 export {
   CourseList,
@@ -14,4 +15,5 @@ export {
   CourseCard,
   OwnedCourseCard,
   CourseFilter,
+  ManagedCourseCard,
 };

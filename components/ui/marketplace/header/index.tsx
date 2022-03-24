@@ -13,7 +13,7 @@ const LINKS = [
     label: "My Courses",
   },
   {
-    href: "/marketplace/courses/manage",
+    href: "/marketplace/courses/managed",
     label: "Manage Courses",
   },
 ];
