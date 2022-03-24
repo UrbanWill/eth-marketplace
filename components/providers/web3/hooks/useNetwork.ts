@@ -33,11 +33,14 @@ const handler = (web3: Web3 | null) => () => {
   );
 
   useEffect(() => {
-    if (window.ethereum) {
-      window.ethereum.on("chainChanged", (chainId: number) => {
-        mutate(NETWORKS[parseInt(String(chainId), 16)]);
-      });
-    }
+    const mutator = (chainId: number) => {
+      mutate(NETWORKS[parseInt(String(chainId), 16)]);
+    };
+    window.ethereum.on("chainChanged", mutator);
+
+    return () => {
+      window.ethereum.removeListener("chainChanged", mutator);
+    };
   }, [web3]);
 
   return {

@@ -19,7 +19,9 @@ const WalletBar: FC = () => {
   return (
     <section className="text-white bg-indigo-600 my-4 rounded-lg">
       <div className="p-8">
-        <h1 className="text-base xs:text-xl break-words">{`Hello, ${accountNumber}`}</h1>
+        <h1 className="text-base xs:text-xl break-words">
+          {`Hello, ${accountNumber || "Guest"}`}
+        </h1>
         <h2 className="subtitle mb-5 text-sm xs:text-base">
           I hope you are having a great day!
         </h2>
