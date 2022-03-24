@@ -5,9 +5,10 @@ import { Course } from "utils/types";
 
 interface Props {
   course: Course;
+  hasOwner: boolean;
 }
 
-const Hero: FC<Props> = ({ course }: Props) => {
+const Hero: FC<Props> = ({ course, hasOwner }: Props) => {
   const { title, description, coverImage } = course;
   return (
     <section className="py-4">
@@ -26,6 +27,11 @@ const Hero: FC<Props> = ({ course }: Props) => {
             <div className="relative pt-6 px-4 sm:px-6 lg:px-8" />
             <main className="mt-10 mx-auto max-w-7xl px-4 sm:mt-12 sm:px-6 md:mt-16 lg:mt-20 lg:px-8 xl:mt-28">
               <div className="sm:text-center lg:text-left">
+                {hasOwner && (
+                  <div className="text-xl inline-block px-4 py-2 mb-2 rounded-full font-bold bg-green-200 text-green-700">
+                    You are owner of:
+                  </div>
+                )}
                 <h1 className="text-4xl tracking-tight font-extrabold text-gray-900 sm:text-5xl md:text-6xl">
                   <span className="block xl:inline">
                     {title.substring(0, title.length / 2)}

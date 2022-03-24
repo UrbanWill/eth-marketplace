@@ -61,6 +61,10 @@ interface IPurchasedCourse extends Course {
   price: string;
 }
 
+type MessageVariants = "success" | "warning" | "danger";
+
+type CourseState = "purchased" | "activated" | "deactivated";
+
 export type {
   Course,
   IParams,
@@ -70,4 +74,6 @@ export type {
   IOrder,
   ISetupHooks,
   IPurchasedCourse,
+  MessageVariants,
+  CourseState,
 };

@@ -1,4 +1,6 @@
 import { FC } from "react";
+import Link from "next/link";
+import { CourseState } from "utils/types";
 
 const lectures = [
   "How to init App",
@@ -11,9 +13,10 @@ const lectures = [
 
 interface Props {
   locked: boolean;
+  courseState: CourseState;
 }
 
-const Curriculum: FC<Props> = ({ locked }: Props) => (
+const Curriculum: FC<Props> = ({ locked, courseState }: Props) => (
   <section className="max-w-5xl mx-auto">
     <div className="flex flex-col">
       <div className="-my-2 overflow-x-auto sm:-mx-6 lg:-mx-8">
@@ -63,12 +66,30 @@ const Curriculum: FC<Props> = ({ locked }: Props) => (
                       </span>
                     </td>
                     <td className="px-6 py-4 whitespace-nowrap text-right text-sm font-medium">
-                      <a
-                        href="#Play"
-                        className="text-indigo-600 hover:text-indigo-900"
-                      >
-                        {locked ? "Get Acess" : "Play"}
-                      </a>
+                      {locked ? (
+                        <>
+                          {courseState === "deactivated" && (
+                            <Link href="/marketplace">
+                              <a className="text-indigo-600 hover:text-indigo-900">
+                                Get Access
+                              </a>
+                            </Link>
+                          )}
+                          {courseState === "purchased" && (
+                            <Link href="/faq">
+                              <a className="text-yellow-500 hover:text-yellow-900">
+                                Waiting for activation...
+                              </a>
+                            </Link>
+                          )}
+                        </>
+                      ) : (
+                        <Link href="/watch">
+                          <a className="text-indigo-600 hover:text-indigo-900">
+                            Watch
+                          </a>
+                        </Link>
+                      )}
                     </td>
                   </tr>
                 ))}

@@ -1,8 +1,8 @@
 import Web3 from "web3";
-import { Course } from "utils/types";
+import { Course, CourseState } from "utils/types";
 
 interface IIndexable {
-  [key: string]: string;
+  [key: string]: CourseState;
 }
 
 export const COURSE_STATES: IIndexable = {
