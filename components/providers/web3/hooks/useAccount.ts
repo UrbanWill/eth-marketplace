@@ -23,15 +23,14 @@ const handler = (web3: Web3 | null) => () => {
 
   useEffect(() => {
     const mutator = (account: string) => mutate(account ?? null);
-    if (window.ethereum) {
-      window.ethereum.on("accountsChanged", (accounts: string[]) => {
-        mutator(accounts[0]);
-      });
-    }
+    window.ethereum?.on("accountsChanged", (accounts: string[]) => {
+      mutator(accounts[0]);
+    });
+
     // There seems to still have a memory leak related to accountsChanged.
     // To view issue: console.log(window.ethereum._events); 'accountsChanged'
     return () => {
-      window.ethereum.removeListener("accountsChanged", mutator);
+      window.ethereum?.removeListener("accountsChanged", mutator);
     };
   }, []);
 

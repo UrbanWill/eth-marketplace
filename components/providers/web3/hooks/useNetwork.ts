@@ -36,10 +36,10 @@ const handler = (web3: Web3 | null) => () => {
     const mutator = (chainId: number) => {
       mutate(NETWORKS[parseInt(String(chainId), 16)]);
     };
-    window.ethereum.on("chainChanged", mutator);
+    window.ethereum?.on("chainChanged", mutator);
 
     return () => {
-      window.ethereum.removeListener("chainChanged", mutator);
+      window.ethereum?.removeListener("chainChanged", mutator);
     };
   }, [web3]);
 
