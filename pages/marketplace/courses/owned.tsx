@@ -7,6 +7,7 @@ import { useOwnedCourses, useAccount } from "components/hooks/web3";
 import getAllCourses from "content/courses/fetcher";
 import { Course, IPurchasedCourse } from "utils/types";
 import { useRouter } from "next/router";
+import Link from "next/link";
 
 interface Props {
   courses: Course[];
@@ -21,6 +22,17 @@ const OwnedCourses: FC<Props> = ({ courses }) => {
     <>
       <MarketplaceHeader />
       <section className="grid grid-cols-1">
+        <div>
+          <Message type="warning">
+            <div>You don&apos;t own any courses</div>
+            <Link href="/marketplace">
+              <a className="font-normal hover:underline">
+                <i>Purchase Course</i>
+              </a>
+            </Link>
+          </Message>
+        </div>
+
         {ownedCourses.data?.map((course: IPurchasedCourse) => (
           <OwnedCourseCard key={course.id} course={course}>
             <Message message="My custom message!" />
