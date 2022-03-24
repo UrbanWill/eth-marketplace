@@ -2,10 +2,10 @@ import CourseList from "./courseList";
 import CourseHero from "./hero";
 import Keypoints from "./keypoints";
 import Curriculum from "./curriculum";
-import CourseCard from "./CourseCard";
-import OwnedCourseCard from "./OwnedCourseCard";
+import CourseCard from "./cards/courseCard";
+import OwnedCourseCard from "./cards/ownedCourseCard";
 import CourseFilter from "./filter";
-import ManagedCourseCard from "./managedCourseCard";
+import ManagedCourseCard from "./cards/managedCourseCard";
 
 export {
   CourseList,
