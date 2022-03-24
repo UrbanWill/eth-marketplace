@@ -1,3 +1,4 @@
+import { useAccount, useOwnedCourse } from "components/hooks/web3";
 import type { NextPage, GetStaticPaths, GetStaticProps } from "next";
 
 import { CourseHero, Keypoints, Curriculum } from "components/ui/course";
@@ -9,14 +10,19 @@ interface Props {
   course: CourseInterface;
 }
 
-const Course: NextPage<Props> = ({ course }: Props) => (
-  <>
-    <CourseHero course={course} />
-    <Keypoints points={course.wsl} />
-    <Curriculum locked />
-    {/* <Modal isOpen={false} /> */}
-  </>
-);
+const Course: NextPage<Props> = ({ course }: Props) => {
+  const { account } = useAccount();
+  const { ownedCourse } = useOwnedCourse(course, account.data);
+  console.log(ownedCourse);
+  return (
+    <>
+      <CourseHero course={course} />
+      <Keypoints points={course.wsl} />
+      <Curriculum locked />
+      {/* <Modal isOpen={false} /> */}
+    </>
+  );
+};
 
 export const getStaticPaths: GetStaticPaths = () => {
   const { data } = getAllCourses();

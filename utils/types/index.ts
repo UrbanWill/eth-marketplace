@@ -33,6 +33,7 @@ interface IHooks {
   useAccount: () => any;
   useNetwork: () => any;
   useOwnedCourses: any;
+  useOwnedCourse: any;
 }
 
 interface IWeb3Context extends IWeb3ApiState {
