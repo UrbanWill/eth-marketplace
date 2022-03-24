@@ -34,6 +34,7 @@ interface IHooks {
   useNetwork: () => any;
   useOwnedCourses: any;
   useOwnedCourse: any;
+  useManagedCourses: any;
 }
 
 interface IWeb3Context extends IWeb3ApiState {

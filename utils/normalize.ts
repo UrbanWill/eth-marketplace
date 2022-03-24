@@ -1,3 +1,4 @@
+/* eslint-disable comma-dangle */
 import Web3 from "web3";
 import { Course, CourseState } from "utils/types";
 
@@ -19,7 +20,14 @@ interface IOwnedCourse {
   price: string;
 }
 
-const normalizeOwnedCourse = (course: Course, ownedCourse: IOwnedCourse) => ({
+interface ICourseHash {
+  hash: string;
+}
+
+const normalizeOwnedCourse = (
+  course: Course | ICourseHash,
+  ownedCourse: IOwnedCourse
+) => ({
   ...course,
   ownedCourseId: ownedCourse.id,
   proof: ownedCourse.proof,

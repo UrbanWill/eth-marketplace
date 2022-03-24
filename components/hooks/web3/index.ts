@@ -28,6 +28,14 @@ const useOwnedCourse = (course: Course, account: string | null) => {
   };
 };
 
+const useManagedCourses = (account: string | null) => {
+  const swrRes = useHooks((hooks: IHooks) => hooks.useManagedCourses)(account);
+
+  return {
+    managedCourses: swrRes,
+  };
+};
+
 const useWalletInfo = () => {
   const { account } = useAccount();
   const { network } = useNetwork();
@@ -45,4 +53,5 @@ export {
   useWalletInfo,
   useOwnedCourses,
   useOwnedCourse,
+  useManagedCourses,
 };
