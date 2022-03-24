@@ -12,7 +12,7 @@ import normalizeOwnedCourse from "utils/normalize";
 const handler =
   (web3: Web3 | null, contract: Contract | null) =>
   (course: Course, account: string | null) => {
-    const swrRes = useSWR(
+    const { data, error, ...rest } = useSWR(
       () =>
         web3 && contract && account
           ? `web3/ownedCourse/${account}/${course.id}`
@@ -41,7 +41,11 @@ const handler =
       }
     );
 
-    return swrRes;
+    return {
+      data,
+      hasInitialResponse: !!(data || error),
+      ...rest,
+    };
   };
 
 export default handler;

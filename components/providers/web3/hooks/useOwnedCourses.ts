@@ -15,7 +15,7 @@ const NO_OWNER = "0x0000000000000000000000000000000000000000";
 const handler =
   (web3: Web3 | null, contract: Contract | null) =>
   (courses: Course[], account: string | null) => {
-    const swrRes = useSWR(
+    const { data, error, ...rest } = useSWR(
       () =>
         web3 && contract && account ? `web3/ownedCourses/${account}` : null,
       async () => {
@@ -47,7 +47,12 @@ const handler =
       }
     );
 
-    return swrRes;
+    return {
+      data,
+      isEmpty: !data || data.length === 0,
+      hasInitialResponse: !!(data || error),
+      ...rest,
+    };
   };
 
 export default handler;
