@@ -8,6 +8,7 @@ import Web3 from "web3";
 import { Contract } from "web3-eth-contract";
 import { Course } from "utils/types";
 import normalizeOwnedCourse from "utils/normalize";
+import createCourseHash from "utils/createCourseHash";
 
 const handler =
   (web3: Web3 | null, contract: Contract | null) =>
@@ -18,15 +19,8 @@ const handler =
           ? `web3/ownedCourse/${account}/${course.id}`
           : null,
       async () => {
-        const hexCourseId = web3?.utils.utf8ToHex(course.id);
-        let courseHash;
-
-        if (hexCourseId && account) {
-          courseHash = web3?.utils.soliditySha3(
-            { type: "bytes16", value: hexCourseId },
-            { type: "address", value: account }
-          );
-        }
+        // @ts-expect-error this fn will not be called if there is no web3
+        const courseHash = createCourseHash(web3, course.id, account);
 
         const ownedCourse = await contract?.methods
           .getCourseByHash(courseHash)
