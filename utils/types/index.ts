@@ -54,7 +54,12 @@ interface ISetupHooks {
   contract: Contract | null;
 }
 
-interface IPurchasedCourse extends Course {
+interface IIndexable {
+  [key: string]: string | number | string[];
+}
+
+interface IPurchasedCourse extends Course, IIndexable {
+  hash: string;
   ownedCourseId: string;
   proof: string;
   owner: string;

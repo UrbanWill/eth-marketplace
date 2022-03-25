@@ -6,6 +6,7 @@ import CourseCard from "./cards/courseCard";
 import OwnedCourseCard from "./cards/ownedCourseCard";
 import CourseFilter from "./filter";
 import ManagedCourseCard from "./cards/managedCourseCard";
+import VerificationInput from "./managedInput";
 
 export {
   CourseList,
@@ -16,4 +17,5 @@ export {
   OwnedCourseCard,
   CourseFilter,
   ManagedCourseCard,
+  VerificationInput,
 };
