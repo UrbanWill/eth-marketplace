@@ -37,7 +37,7 @@ const handler = (web3: Web3 | null) => () => {
   return {
     account: {
       data,
-      hasInitialResponse: data || error,
+      hasInitialResponse: !!(data || error),
       // @ts-expect-error
       isAdmin: (data && adminAddresses[web3?.utils.keccak256(data)]) ?? false,
       mutate,

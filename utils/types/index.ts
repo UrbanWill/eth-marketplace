@@ -67,6 +67,13 @@ interface IPurchasedCourse extends Course, IIndexable {
   price: string;
 }
 
+interface IAccount {
+  data: string;
+  hasInitialResponse: boolean;
+  isAdmin: boolean;
+  isValidating: false;
+}
+
 type MessageVariants = "success" | "warning" | "danger";
 
 type CourseState = "purchased" | "activated" | "deactivated";
@@ -82,4 +89,5 @@ export type {
   IPurchasedCourse,
   MessageVariants,
   CourseState,
+  IAccount,
 };

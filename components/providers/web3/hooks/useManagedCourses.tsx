@@ -7,15 +7,18 @@
 
 import normalizeOwnedCourse from "utils/normalize";
 import { Contract } from "web3-eth-contract";
+import { IAccount } from "utils/types";
 import Web3 from "web3";
 import useSWR from "swr";
 
 const handler =
   (web3: Web3 | null, contract: Contract | null) =>
-  (account: string | null) => {
+  (account: IAccount | null) => {
     const swrRes = useSWR(
       () =>
-        web3 && contract && account ? `web3/managedCourses/${account}` : null,
+        web3 && contract && account?.data && account.isAdmin
+          ? `web3/managedCourses/${account.data}`
+          : null,
       async () => {
         const courses = [];
         const courseCount = await contract?.methods.getCourseCount().call();

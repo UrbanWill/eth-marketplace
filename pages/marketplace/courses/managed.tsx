@@ -23,7 +23,7 @@ const ManageCourses: FC = () => {
 
   const { web3 } = useWeb3();
   const { account } = useAccount();
-  const { managedCourses } = useManagedCourses(account.data);
+  const { managedCourses } = useManagedCourses(account);
 
   /** This function would make a call to a third party service to
    * validate and give the user access by email
