@@ -2,7 +2,7 @@
 /* eslint-disable implicit-arrow-linebreak */
 /* eslint-disable comma-dangle */
 import { FC, useState } from "react";
-import { useAccount, useManagedCourses } from "components/hooks/web3";
+import { useAdmin, useManagedCourses } from "components/hooks/web3";
 
 import {
   ManagedCourseCard,
@@ -22,7 +22,7 @@ const ManageCourses: FC = () => {
   const [proofedOwnership, setProofedOwnership] = useState<IIndexable>({});
 
   const { web3 } = useWeb3();
-  const { account } = useAccount();
+  const { account } = useAdmin("/marketplace");
   const { managedCourses } = useManagedCourses(account);
 
   /** This function would make a call to a third party service to
